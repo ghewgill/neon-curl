@@ -424,6 +424,9 @@ if sys.platform == "win32":
     libcurl = curlenv.Command("curl-7.41.0/lib/{}.lib".format(libname), "curl-7.41.0/winbuild/Makefile.vc", "cd lib/http/curl-7.41.0/lib && nmake /f Makefile.vc10 CFG={} MACHINE=x64".format(cfgname))
     env.Append(CPPPATH=["curl-7.41.0/include"])
     env.Append(LIBS=["advapi32", "ws2_32"])
+elif sys.platform == "darwin":
+    # MacOS provides libcurl.
+    libcurl = "curl"
 else:
     conf = Configure(env)
     if not conf.CheckLibWithHeader("curl", "curl/curl.h", "C++"):
