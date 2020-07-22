@@ -1,0 +1,9 @@
+image: openbsd/latest
+packages:
+- scons
+sources:
+- https://github.com/ghewgill/neon-http
+tasks:
+- build: |
+    cd neon-http
+    scons

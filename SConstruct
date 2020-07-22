@@ -43,7 +43,7 @@ if sys.platform == "win32":
 else:
     conf = Configure(env)
     if not conf.CheckLibWithHeader("z", "zlib.h", "C++"):
-        libz = libzenv.Command("zlib-1.2.8/libz.a", "zlib-1.2.8/configure", "cd lib/http/zlib-1.2.8 && ./configure --static && make")
+        libz = libzenv.Command("zlib-1.2.8/libz.a", "zlib-1.2.8/configure", "cd zlib-1.2.8 && ./configure --static && make")
         env.Append(CPPPATH=["zlib-1.2.8"])
     conf.Finish()
 
@@ -396,7 +396,7 @@ if sys.platform == "win32":
 else:
     conf = Configure(env)
     if not conf.CheckLibWithHeader("ressl", "crypto.h", "C++"):
-        libssl = sslenv.Command(["lib/libssl.a", "lib/libcrypto.a"], "libressl-2.2.4/configure", "cd lib/http/libressl-2.2.4 && ./configure --with-pic --prefix={} && make install".format(os.path.abspath(".")))
+        libssl = sslenv.Command(["lib/libssl.a", "lib/libcrypto.a"], "libressl-2.2.4/configure", "cd libressl-2.2.4 && ./configure --with-pic --prefix={} && make install".format(os.path.abspath(".")))
         env.Append(CPPPATH=["include"])
     conf.Finish()
 
@@ -421,7 +421,7 @@ if sys.platform == "win32":
     libname = "libcurl" if "RELEASE" in env and env["RELEASE"] else "libcurld"
     cfgname = "release" if "RELEASE" in env and env["RELEASE"] else "debug"
     cfgname += "-zlib"
-    libcurl = curlenv.Command("curl-7.41.0/lib/{}.lib".format(libname), "curl-7.41.0/winbuild/Makefile.vc", "cd lib/http/curl-7.41.0/lib && nmake /f Makefile.vc10 CFG={} MACHINE=x64".format(cfgname))
+    libcurl = curlenv.Command("curl-7.41.0/lib/{}.lib".format(libname), "curl-7.41.0/winbuild/Makefile.vc", "cd curl-7.41.0/lib && nmake /f Makefile.vc10 CFG={} MACHINE=x64".format(cfgname))
     env.Append(CPPPATH=["curl-7.41.0/include"])
     env.Append(LIBS=["advapi32", "ws2_32"])
 elif sys.platform == "darwin":
@@ -430,7 +430,7 @@ elif sys.platform == "darwin":
 else:
     conf = Configure(env)
     if not conf.CheckLibWithHeader("curl", "curl/curl.h", "C++"):
-        libcurl = curlenv.Command("curl-7.41.0/lib/.libs/libcurl.a", "curl-7.41.0/configure", " ".join(["cd lib/http/curl-7.41.0 &&",
+        libcurl = curlenv.Command("curl-7.41.0/lib/.libs/libcurl.a", "curl-7.41.0/configure", " ".join(["cd curl-7.41.0 &&",
             "./configure",
             "--disable-ares",
             "--disable-ftp",

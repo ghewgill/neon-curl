@@ -1,0 +1,10 @@
+image: fedora/latest
+packages:
+- g++
+- scons
+sources:
+- https://github.com/ghewgill/neon-http
+tasks:
+- build: |
+    cd neon-http
+    scons
