@@ -20,3 +20,9 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo sed -i -e '1s/python$/python3/' $(which scons); fi
 script:
   - scons
+  - cd ..
+  - git clone https://github.com/ghewgill/neon-lang
+  - ln -s ../../neon-http neon-lang/lib/http
+  - cd neon-lang
+  - cmake . && cmake --build .
+  - ctest -R http
