@@ -12,5 +12,5 @@ IF s[LAST] = "\r" THEN
     s := s[FIRST TO LAST-1]
 END IF
 print(s)
-#= The MIT License (MIT)
+--= The MIT License (MIT)
 os.kill(p)
