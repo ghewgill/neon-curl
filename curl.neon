@@ -1,18 +1,18 @@
-/*  File: http
+/*  File: curl
  *
- *  Functions for making HTTP requests.
+ *  Functions for making HTTP requests using libcurl.
  */
 
-EXPORT HttpException
+EXPORT CurlException
 
 EXPORT get
 EXPORT post
 
-/*  Exception: HttpException
+/*  Exception: CurlException
  *
  *  Raised when an HTTP request returns anything other than 200 OK.
  */
-EXCEPTION HttpException
+EXCEPTION CurlException
 
 /*  Function: get
  *

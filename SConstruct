@@ -480,4 +480,4 @@ env.Depends(libcurl, libssl)
 
 env.Append(CPPPATH=["../../common"])
 env.Append(LIBS=[x for x in [libcurl, libssl, libz] if x])
-env.SharedLibrary("neon_http", "http.cpp")
+env.SharedLibrary("neon_curl", "curl.cpp")

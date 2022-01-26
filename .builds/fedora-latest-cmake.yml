@@ -3,8 +3,8 @@ packages:
 - g++
 - scons
 sources:
-- https://github.com/ghewgill/neon-http
+- https://github.com/ghewgill/neon-curl
 tasks:
 - build: |
-    cd neon-http
+    cd neon-curl
     scons

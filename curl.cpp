@@ -5,7 +5,7 @@
 
 #include "neonext.h"
 
-const char *Exception_HttpException = "HttpException";
+const char *Exception_CurlException = "CurlException";
 
 const Ne_MethodTable *Ne;
 
@@ -70,7 +70,7 @@ Ne_FUNC(Ne_get)
     } else {
         curl_easy_cleanup(curl);
         //fprintf(stderr, "curl %d error %s\n", r, error);
-        Ne_RAISE_EXCEPTION(Exception_HttpException, error, r);
+        Ne_RAISE_EXCEPTION(Exception_CurlException, error, r);
     }
     curl_easy_cleanup(curl);
     Ne_RETURN_BYTES(reinterpret_cast<const unsigned char *>(data.data()), static_cast<int>(data.size()));
@@ -116,7 +116,7 @@ Ne_FUNC(Ne_post)
     } else {
         curl_easy_cleanup(curl);
         //fprintf(stderr, "curl %d error %s\n", r, error);
-        Ne_RAISE_EXCEPTION(Exception_HttpException, error, r);
+        Ne_RAISE_EXCEPTION(Exception_CurlException, error, r);
     }
     curl_easy_cleanup(curl);
     Ne_RETURN_BYTES(reinterpret_cast<const unsigned char *>(data.data()), static_cast<int>(data.size()));
