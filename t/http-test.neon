@@ -3,10 +3,14 @@ IMPORT os
 IMPORT string
 IMPORT time
 
-LET p: os.Process := os.spawn("python3 -m http.server 21010")
+LET r: os.SpawnResult := os.spawn("python3 -m http.server 21010")
+CHECK r ISA os.SpawnResult.process ELSE
+    PANIC "spawn error"
+END CHECK
+LET p: os.Process := r.process
 time.sleep(1)
 VAR headers: Array<String>
-LET license: String := curl.get("http://127.0.0.1:21010/LICENSE.txt", {}, OUT headers).decodeToString()
+LET license: String := curl.get("http://127.0.0.1:21010/LICENSE.txt", {}, OUT headers).decodeUTF8().expectString()
 VAR s: String := string.split(license, "\n")[0]
 IF s[LAST] = "\r" THEN
     s := s[FIRST TO LAST-1]
